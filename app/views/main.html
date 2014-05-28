@@ -1,0 +1,36 @@
+<div dynamic="html" id="mainDiv"/>
+
+
+<div >
+  <div class="row">
+    <h3>Charger une url</h3>
+    <input type="url" ng-model="url"/>
+    <input type="submit" ng-click="load(url)"/>
+  </div>
+
+    <i ng-show="undeterminate" class="fa fa-cog fa-5x fa-spin"></i>
+
+
+    <div ng-show="html" >
+    <h2>Modifications</h2>
+    <input type="text" ng-model="searchBox"/><input type="checkbox" ng-model="showAll"/> Montrer toutes les valeurs
+    <table>
+      <tr>
+        <th>Valeur d'origine</th>
+        <th>Valeur modifiée</th>
+        <th/>
+      <tr ng-repeat="val in var  | filter: searchBox track by $index" ng-show="(showAll || oldTexts[$index] != val) && (val || oldTexts[$index])">
+        <td>{{oldTexts[$index]}}</td>
+        <td> 
+          <input type="text" ng-model="var[$index]"/>
+        </td>
+        <td>
+          <button ng-show="oldTexts[$index] != val" class="btn btn-danger" ng-click="var[$index] = oldTexts[$index]" >Annuler</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+ 
